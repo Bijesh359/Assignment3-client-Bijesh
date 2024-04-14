@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/contact.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Arimo&display=swap" rel="stylesheet">
+    <title>Contact Form</title>
+    <style>
+        .alert {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px;
+            color: #fff;
+            font-weight: lighter;
+            width: 100%;
+            text-align: center;
+            z-index: 9999;
+            transition: top 0.3s ease-in-out;
+        }
+        
+        .alert-error {
+            background-color: #ff5555;
+        }
+        
+        .alert-success {
+            background-color: #55ff55;
+        }
+        
+        .error-input {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contact-container">
+        <form id='contactForm' action="https://formspree.io/f/xoqgpagj" action="POST" method="POST" class="contact-left" onsubmit="return validateForm();;reset();return false">
+            <!-- <form id='contactForm' action="https://formspree.io/f/xoqgpagj" action="POST" method="POST" class="contact-left" onsubmit="sendEmail();reset();return false"> -->
+
+            <div class="contact-left-title">
+                <h2>Contact Us</h2>
+                <hr>
+            </div>
+            <input type="text" name="firstname" id="firstname" placeholder="Firstname" class="contact-inputs">
+            <input type="text" name="lastname" id="lastname" placeholder="Lastname" class="contact-inputs">
+            <input type="email" name="email" id="email" placeholder="Email" class="contact-inputs">
+            <input type="text" name="phone" id="phone" placeholder="Phone" class="contact-inputs">
+            <input type="date" name="date" id="date" placeholder="Date" class="contact-inputs">
+            <textarea name="message" id="message" placeholder="Message" class="contact-inputs"></textarea>
+            <button type="submit">Submit<img src="img/arrow_icon.png" alt="this is the submit icon"></button>
+        </form>
+        <div class="contact-right">
+            <img src="img/c1.gif" alt="img right background">
+        </div>
+    </div>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+    <script>
+        function sendEmail() {
+            Email.send({
+                Host: "smtp.gmail.com",
+                Username: "bijesh.rahil.arshjeet@gmail.com",
+                Password: "dlna rqku etrx xwqe",
+                To: 'bijesh.rahil.arshjeet@gmail.com',
+                // From: "bijesh.rahil.arshjeet@gmail.com",
+                From: document.getElementById('email').value,
+                Subject: "New Contact Form Enquire",
+                Body: "First Name: " + document.getElementById('firstname').value +
+                    "<br> Last Name: " + document.getElementById('lastname').value +
+                    "<br> Email: " + document.getElementById('email').value +
+                    "<br> Phone: " + document.getElementById('phone').value +
+                    "<br> Date: " + document.getElementById('date').value +
+                    "<br> Message: " + document.getElementById('message').value
+                    // Body: "And this is body"
+
+            }).then(
+                message => alert(message)
+            );
+
+        }
+
+        function validateForm() {
+            var firstname = document.getElementById('firstname').value.trim();
+            var lastname = document.getElementById('lastname').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var phone = document.getElementById('phone').value.trim();
+            var date = document.getElementById('date').value.trim();
+            var message = document.getElementById('message').value.trim();
+
+            // First name should be at least 5 characters
+            if (firstname.length < 5) {
+                showAlert("First name should be at least 5 characters", 'error');
+                return false;
+            }
+
+            // Last name should be at least 5 characters
+            if (lastname.length < 5) {
+                showAlert("Last name should be at least 5 characters", 'error');
+                return false;
+            }
+
+            // Email should contain '@'
+            if (!email.includes('@')) {
+                showAlert("Invalid email address", 'error');
+                return false;
+            }
+
+            // Phone must contain 10 digits
+            if (!phone.match(/^\d{10}$/)) {
+                showAlert("Phone must contain 10 digits", 'error');
+                return false;
+            }
+
+            // Date must have the appropriate format (dd/mm/yy)
+            if (!date.match(/^\d{4}-\d{2}-\d{2}$/)) {
+                showAlert("Date must be in the format yyyy-mm-dd", 'error');
+                return false;
+            }
+
+            // Message must be of at least 50 alphabets
+            if (message.length < 50) {
+                showAlert("Message must be at least 50 characters long", 'error');
+                return false;
+            }
+
+            sendEmail();
+
+            return true; // Form validated successfully
+
+
+        }
+
+        function showAlert(message, type) {
+            var alertBox = document.createElement('div');
+            alertBox.textContent = message;
+            alertBox.classList.add('alert');
+            if (type === 'error') {
+                alertBox.classList.add('alert-error');
+            } else if (type === 'success') {
+                alertBox.classList.add('alert-success');
+            }
+            document.body.appendChild(alertBox);
+            setTimeout(function() {
+                alertBox.style.top = '-50px'; // Slide up animation
+                setTimeout(function() {
+                    alertBox.remove();
+                }, 300); // Remove alert after 0.3 seconds
+            }, 3000); // Show alert for 3 seconds
+        }
+    </script>
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,141 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Archivo Black', sans-serif;
+    background: rgb(113, 218, 230);
+    background: linear-gradient(84deg, rgb(84, 106, 235) 0%, rgb(41, 55, 67) 74%);
+}
+
+.contact-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.contact-left {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+}
+
+
+/* .contact-left-title {
+    color: #ffffff;
+    font-size: 40px;
+    margin-bottom: 5px;
+} */
+
+.contact-left-title {
+    color: #ffffff;
+    font-size: 40px;
+    margin-bottom: 5px;
+    animation: slideIn 0.9s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.contact-left-title hr {
+    border: none;
+    width: 260px;
+    height: 5px;
+    background-color: #f2ebeb;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.contact-inputs {
+    width: 400px;
+    height: 50px;
+    border: none;
+    outline: none;
+    padding-left: 25px;
+    font-weight: 500;
+    color: #222121;
+    border-radius: 50px;
+    font-family: 'Arimo', sans-serif;
+    background-color: #f8f4f4;
+}
+
+.contact-left textarea {
+    height: 140px;
+    padding-top: 15px;
+    border-radius: 20px;
+}
+
+.contact-inputs:focus {
+    border: 2px solid #131313;
+}
+
+.contact-inputs::placeholder {
+    color: #1d1c1c;
+}
+
+.contact-left button {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    font-size: 16px;
+    color: #fff;
+    gap: 10px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(270deg, #b0b6d2, rgb(106, 124, 227));
+    font-family: 'Arimo', sans-serif;
+    cursor: pointer;
+}
+
+.contact-left button img {
+    height: 15px;
+}
+
+.contact-right img {
+    width: 500px;
+}
+
+@media (max-width: 768px) {
+    .contact-left-title {
+        text-align: center;
+        font-size: 30px;
+    }
+    .contact-left-title hr {
+        width: 200px;
+        background-color: #dbdada;
+    }
+    .contact-inputs {
+        width: 80vw;
+        margin: 0 auto;
+    }
+    .contact-right {
+        display: none;
+    }
+    button {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 320px) {
+    .contact-left-title {
+        text-align: center;
+        font-size: 25px;
+    }
+    .contact-left-title hr {
+        width: 250px;
+        background-color: #dbdada;
+    }
+}

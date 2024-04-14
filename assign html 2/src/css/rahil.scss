@@ -1,0 +1,106 @@
+// Variables
+$menu-text-color: yellow;
+$menu-hover-text-color: white;
+$button-background-color: red;
+$contact-border-style: dashed;
+$contact-border-color: black;
+$contact-border-width: 2px;
+
+// Global styles
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+// Header styles
+header {
+    // Header section styling
+    #header {
+        background-color: black;
+        z-index: 1000;
+        // Navigation bar styles
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            color: $menu-text-color;
+        }
+        // Brand styles
+        .brand {
+            a {
+                color: $menu-text-color;
+                text-decoration: none;
+                font-size: 24px;
+            }
+        }
+        // Navigation list styles
+        .nav-list {
+            ul {
+                display: flex;
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                li {
+                    margin-left: 20px;
+                    a {
+                        color: $menu-text-color;
+                        text-decoration: none;
+                        text-transform: uppercase;
+                        // Hover effect on navigation links
+                        &:hover {
+                            color: $menu-hover-text-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Button styles
+a.cta,
+button {
+    background-color: $button-background-color;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    text-transform: uppercase;
+    position: relative;
+    // After effect for all buttons
+    &::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: white;
+        margin-top: 5px;
+    }
+}
+
+// Contact form styles
+#contact {
+    padding: 20px;
+    border: $contact-border-width $contact-border-style $contact-border-color;
+    // Style for contact form items
+    .contact-items {
+        display: flex;
+        flex-direction: column; // Use flex-direction for better layout
+        gap: 20px; // Add gap between items
+        .contact-item {
+            display: flex;
+            align-items: center;
+            // Styling for icons and text
+            .icon {
+                margin-right: 10px;
+            }
+            .contact-info {
+                h1 {
+                    margin: 0;
+                    color: $button-background-color; // Optional: Match contact headings with button background color
+                }
+            }
+        }
+    }
+}
